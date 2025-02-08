@@ -1,3 +1,22 @@
+# Changes from upstream to work with my OKD
+
+Rebuild Dockerfile with latest driver-toolkit image
+```
+oc adm release info --image-for=driver-toolkit
+```
+
+Grab image version, replace it in Dockerfile
+
+```
+podman build . -t ghcr.io/twodcube-home/driver-toolkit:kernel-<kernel version>
+podman push ghcr.io/twodcube-home/driver-toolkit:kernel-<kernel version>
+```
+
+Scale down cluster version operator
+
+Edit `driver-toolkit` ImageStream to new version
+
+
 # Driver Toolkit
 The Driver Toolkit (DTK from now on) is a container image in the OpenShift payload which is meant to be used as a base image on which to build driver containers. The Driver Toolkit image [contains](https://github.com/openshift/driver-toolkit/blob/master/Dockerfile "contains") the kernel packages commonly required as dependencies to build or install kernel modules as well as a few tools needed in driver containers. The version of these packages will match the kernel version running on the RHCOS nodes in the corresponding OpenShift release.
 

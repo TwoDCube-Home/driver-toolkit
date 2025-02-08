@@ -1,10 +1,12 @@
-FROM registry.ci.openshift.org/ocp/4.19:base-rhel9
+FROM quay.io/okd/scos-content@sha256:a675fdb5ee58d2776e175351305a61c67af471bef6b0be80942a9b0dec59aeae
 ARG KERNEL_VERSION=''
 ARG RT_KERNEL_VERSION=''
 ARG RHEL_VERSION=''
 # If RHEL_VERSION is empty, we infer it from the /etc/os-release file. This is used by OKD as we always want the latest one. 
 RUN [ "${RHEL_VERSION}" == "" ] && source /etc/os-release && RHEL_VERSION=${VERSION}; echo ${RHEL_VERSION} > /etc/yum/vars/releasever \
     && dnf config-manager --best --setopt=install_weak_deps=False --save
+
+RUN dnf -y remove kernel-*
 
 # kernel packages needed to build drivers / kmods 
 RUN dnf -y install \
