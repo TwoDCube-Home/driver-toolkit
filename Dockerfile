@@ -1,4 +1,4 @@
-FROM quay.io/okd/scos-content@sha256:a675fdb5ee58d2776e175351305a61c67af471bef6b0be80942a9b0dec59aeae
+FROM quay.io/okd/scos-content@sha256:a30f62e3f90b31306fbc4f7f0b9b828be93ab16950bd5e01d95ca13bf53eccb1
 ARG KERNEL_VERSION=''
 ARG RT_KERNEL_VERSION=''
 ARG RHEL_VERSION=''
