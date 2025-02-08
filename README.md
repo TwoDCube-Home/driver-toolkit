@@ -8,7 +8,7 @@ oc adm release info --image-for=driver-toolkit
 Grab image version, replace it in Dockerfile
 
 ```
-podman build . -t ghcr.io/twodcube-home/driver-toolkit:kernel-<kernel version>
+podman build . -t ghcr.io/twodcube-home/driver-toolkit:kernel-<kernel version> --build-arg KERNEL_VERSION="5.14.0-<kernel version>.el9.x86_64" --build-arg RT_KERNEL_VERSION="5.14.0-<kernel version>.el9.x86_64"
 podman push ghcr.io/twodcube-home/driver-toolkit:kernel-<kernel version>
 ```
 
